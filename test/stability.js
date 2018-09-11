@@ -3,7 +3,7 @@ var Web3 = require('web3');
 var assert = require('assert-match');
 var matchers = require('assert-match/matchers');
 var Ganache = require("../index.js");
-var utils = require('ethereumjs-util');
+var utils = require('wanchainjs-util');
 var pify = require('pify');
 
 var regex = matchers.regex

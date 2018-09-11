@@ -1,6 +1,6 @@
 var Web3 = require('web3');
 var Web3WsProvider = require('web3-providers-ws');
-var utils = require('ethereumjs-util');
+var utils = require('wanchainjs-util');
 var assert = require('assert');
 var Ganache = require("../index.js");
 var fs = require("fs");

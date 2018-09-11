@@ -7,3 +7,5 @@ TODO
 .tern-port
 .vscode
 yarn.lock
+.idea
+.nyc_output

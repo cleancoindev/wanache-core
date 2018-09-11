@@ -33,23 +33,24 @@ describe("Transaction Ordering", function() {
 
   it("should order queued transactions correctly by nonce before adding to the block", function(done) {
     var tx_data = {}
+    tx_data.Txtype = '0x01';
     tx_data.to = accounts[1];
     tx_data.from = accounts[0];
     tx_data.value = 0x1;
     tx_data.nonce = 0;
-    tx_data.gas = 21000;
+    tx_data.gas = 53000;
     web3.eth.sendTransaction(tx_data, function(err, tx) {
-      if (err){return done(err)}
+      if (err){console.log(err); return done(err)}
       tx_data.nonce=1;
       web3.eth.sendTransaction(tx_data, function(err, tx){
-        if (err){return done(err)}
+        if (err){console.log(err); return done(err)}
         web3.currentProvider.send({
           jsonrpc: "2.0",
           method: "miner_start",
           params: [1]
         }, function(err,tx){
-          web3.eth.getBlock("latest", function(err, block) {
-            if (err) return done(err);
+            web3.eth.getBlock("latest", function(err, block) {
+            if (err) {console.log(err); return done(err)};
             assert.equal(block.transactions.length, 2, "Latest block should have two transactions");
             done();
           });
@@ -60,10 +61,11 @@ describe("Transaction Ordering", function() {
 
   it("should order queued transactions correctly by price before adding to the block", function(done) {
     var tx_data = {}
+    tx_data.Txtype = '0x01';
     tx_data.to = accounts[1];
     tx_data.from = accounts[0];
     tx_data.value = 0x1;
-    tx_data.gas = 21000;
+    tx_data.gas = 53000;
     tx_data.gasPrice = 0x1
     web3.eth.sendTransaction(tx_data, function(err, tx) {
       if (err){return done(err)}
